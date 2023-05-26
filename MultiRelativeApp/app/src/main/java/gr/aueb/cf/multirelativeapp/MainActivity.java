@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     checkBoxList.remove("Athens");
                 }
                 Toast.makeText(MainActivity.this, checkBoxList.toString(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
