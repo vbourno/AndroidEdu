@@ -1,9 +1,11 @@
 package gr.aueb.cf.recyclerviewapp01.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import gr.aueb.cf.recyclerviewapp01.R;
+import gr.aueb.cf.recyclerviewapp01.activities.SecondActivity;
 import gr.aueb.cf.recyclerviewapp01.models.Movie;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -36,6 +39,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.titleTV.setText(movie.getTitle());
         holder.descriptionTV.setText(movie.getDescription());
         holder.genreTV.setText(movie.getGenre());
+
+        holder.titleTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(v.getContext(), holder.titleTV.getText().toString(), Toast.LENGTH_LONG).show();
+                String movieTitle = holder.titleTV.getText().toString();
+                String movieGenre = holder.genreTV.getText().toString();
+
+                Intent intent = new Intent(v.getContext(), SecondActivity.class);
+                intent.putExtra("title", movieTitle);
+                intent.putExtra("genre", movieGenre);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
